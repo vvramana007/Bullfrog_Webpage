@@ -1,0 +1,131 @@
+{
+  "updateTicker": [
+    "New arrivals landing weekly across whiskey, tequila, and RTDs",
+    "Watch for tasting nights and featured bottle drops",
+    "Cold beer wall ready for game day, house parties, and late runs",
+    "North College pickup with wine, mixers, snacks, and party staples",
+    "Follow Bullfrog Wine & Spirits on Instagram for fresh arrivals and store events"
+  ],
+  "premiumShelf": [
+    {
+      "name": "Don Julio 1942 World Cup Edition",
+      "category": "Collector tequila",
+      "image": "/promo-media/don-julio-1942-world-cup.jpeg",
+      "note": "A trophy-style limited edition tequila feature built for collectors, gifting, and premium shelf energy."
+    },
+    {
+      "name": "Fortaleza Blanco",
+      "category": "Artisanal tequila",
+      "image": "/promo-media/fortaleza-bullfrog.jpeg",
+      "note": "Traditional tequila storytelling with strong visual impact for agave fans and premium tequila shoppers."
+    },
+    {
+      "name": "Maker's Mark Wood Finishing Series",
+      "category": "Limited bourbon",
+      "image": "/promo-media/makers-mark-wood-finish.jpeg",
+      "note": "A bold bourbon release for shoppers looking for a special bottle with real collector appeal."
+    },
+    {
+      "name": "Heaven Hill Heritage Collection",
+      "category": "Aged whiskey",
+      "image": "/promo-media/heaven-hill-heritage-22.jpeg",
+      "note": "A high-end 22-year whiskey visual that makes the premium section feel more serious and curated."
+    },
+    {
+      "name": "Weller Single Barrel",
+      "category": "Allocated bourbon",
+      "image": "/promo-media/weller-single-barrel-bullfrog.jpeg",
+      "note": "A recognizable wheated bourbon for shoppers who like to keep an eye on premium arrivals."
+    },
+    {
+      "name": "Elijah Craig Small Batch",
+      "category": "Bourbon feature",
+      "image": "/promo-media/elijah-craig-pga.jpeg",
+      "note": "A classic bourbon pick with a rich profile for sipping, gifting, and building a better home bar."
+    }
+  ],
+  "updateMoments": [
+    {
+      "kicker": "Coming up",
+      "title": "Tastings and store events",
+      "body": "Watch for upcoming tastings, special pours, and featured in-store events."
+    },
+    {
+      "kicker": "On deck",
+      "title": "Featured bottles and fresh arrivals",
+      "body": "New releases, standout local picks, and limited bottles will be highlighted here first."
+    },
+    {
+      "kicker": "Stay connected",
+      "title": "More updates soon",
+      "body": "Store news, seasonal picks, and helpful links will be shared as new updates go live."
+    }
+  ],
+  "featuredUpdates": [
+    {
+      "kicker": "New arrival",
+      "title": "Weller Single Barrel is the kind of bottle people watch for.",
+      "body": "A premium wheated bourbon with strong collector appeal for shoppers who like to watch for limited bottles.",
+      "cta": "Follow Instagram for availability and same-day shelf updates",
+      "image": "/promo-media/weller-single-barrel-bullfrog.jpeg"
+    },
+    {
+      "kicker": "Limited feature",
+      "title": "Fortaleza Blanco brings real agave tradition into focus.",
+      "body": "A standout blanco tequila for shoppers looking for artisanal, premium, and collector-worthy agave bottles.",
+      "cta": "Ask in store about current premium tequila availability",
+      "image": "/promo-media/fortaleza-bullfrog.jpeg"
+    },
+    {
+      "kicker": "Local shelf energy",
+      "title": "Featured spirits, seasonal bottles, and special releases are worth checking often.",
+      "body": "From bourbon drops to local liqueurs and Irish cream, the store highlights bottles that deserve a closer look.",
+      "cta": "Check back for new arrivals and seasonal picks",
+      "image": "/promo-media/coffee-spirit-477.jpeg"
+    }
+  ],
+  "tastingUpdates": [
+    {
+      "kicker": "In-store tasting",
+      "title": "Tasting tables make new bottles easier to discover.",
+      "body": "Bullfrog Wine & Spirits uses in-store tasting setups to help customers discover new ready-to-drink options, flavor samples, and event-weekend favorites while they shop.",
+      "image": "/promo-media/fabric-tasting-table.jpeg",
+      "alt": "Fabric tasting table display"
+    },
+    {
+      "kicker": "Sampling table",
+      "title": "Brand reps, samples, and real-time recommendations",
+      "body": "Tasting tables give shoppers a more personal way to compare flavors, ask questions, and find something that fits the occasion.",
+      "image": "/promo-media/corona-tasting-table.jpeg",
+      "alt": "In-store sampling table"
+    },
+    {
+      "kicker": "Featured tasting",
+      "title": "Five Farms Irish Cream brings a polished tasting story.",
+      "body": "Cream liqueurs, dessert pours, and seasonal bottles are easier to discover when shoppers can sample and compare them in person.",
+      "image": "/promo-media/five-farms-irish-cream-store.jpeg",
+      "alt": "Five Farms Irish Cream promotional tasting graphic"
+    },
+    {
+      "kicker": "Store moment",
+      "title": "Happy Dad event displays make the store feel active.",
+      "body": "Customer photos, themed displays, and brand setups bring extra energy to weekend shopping and in-store promotions.",
+      "image": "/promo-media/happy-dad-store-moment.jpeg",
+      "alt": "Happy Dad display and customer moment"
+    },
+    {
+      "kicker": "Store visit",
+      "title": "Friendly in-store moments help events feel personal.",
+      "body": "Customer moments and featured displays keep store events welcoming, local, and easy to remember.",
+      "image": "/promo-media/happy-dad-customer-lime.jpeg",
+      "alt": "Customer posing with a Happy Dad display"
+    },
+    {
+      "kicker": "Cocktail tasting",
+      "title": "Mixed Up Cocktail Co. and other pop-ups belong here.",
+      "body": "Photos from cocktail tastings and vendor visits help customers know when to watch for the next in-store event.",
+      "image": "/promo-media/mixed-up-cocktail-tasting.jpeg",
+      "alt": "Mixed Up Cocktail Co. tasting table"
+    }
+  ]
+}

@@ -1,0 +1,524 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bullfrog Wine &amp; Spirits Owner Channel</title>
+    <style>
+      :root {
+        color: #1e1b18;
+        background: #f7f3ed;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      .app-shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 32px 0 56px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 24px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 4rem);
+        line-height: 0.95;
+      }
+
+      .muted {
+        color: #716960;
+        line-height: 1.6;
+      }
+
+      .panel,
+      .item {
+        background: #fffdf8;
+        border: 1px solid #ded5c8;
+        border-radius: 8px;
+        box-shadow: 0 18px 48px rgba(47, 38, 28, 0.08);
+      }
+
+      .panel {
+        padding: 20px;
+      }
+
+      .login {
+        display: grid;
+        gap: 16px;
+        max-width: 480px;
+        margin-top: 32px;
+      }
+
+      .status {
+        min-height: 24px;
+        color: #5e4732;
+        font-weight: 700;
+      }
+
+      .section-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 20px 0;
+      }
+
+      .tab,
+      .button {
+        border: 1px solid #2c2520;
+        border-radius: 999px;
+        background: #2c2520;
+        color: white;
+        cursor: pointer;
+        padding: 10px 14px;
+        font-weight: 800;
+      }
+
+      .tab {
+        background: transparent;
+        color: #2c2520;
+      }
+
+      .tab.active {
+        background: #2c2520;
+        color: white;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: #2c2520;
+      }
+
+      .button.danger {
+        border-color: #1d5638;
+        color: #1d5638;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 16px 0;
+      }
+
+      .content-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .item {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .field-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      label {
+        display: grid;
+        gap: 6px;
+        color: #4d443c;
+        font-size: 0.86rem;
+        font-weight: 800;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        border: 1px solid #cfc4b6;
+        border-radius: 8px;
+        background: white;
+        color: #1e1b18;
+        padding: 11px 12px;
+      }
+
+      textarea {
+        min-height: 96px;
+        resize: vertical;
+      }
+
+      .full {
+        grid-column: 1 / -1;
+      }
+
+      .image-row {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .preview {
+        width: 120px;
+        aspect-ratio: 1;
+        border: 1px solid #d8cfc3;
+        border-radius: 8px;
+        object-fit: cover;
+        background: #efe8df;
+      }
+
+      .hide {
+        display: none;
+      }
+
+      @media (max-width: 720px) {
+        .topbar,
+        .toolbar,
+        .field-grid,
+        .image-row {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .preview {
+          width: 100%;
+          max-width: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app-shell">
+      <div class="topbar">
+        <div>
+          <h1>Bullfrog Wine &amp; Spirits updates</h1>
+          <p class="muted">Edit website cards, add fresh updates, and upload images.</p>
+        </div>
+        <button class="button secondary hide" id="saveTop" type="button">Save changes</button>
+      </div>
+
+      <section class="panel login" id="loginPanel">
+        <h2>Owner login</h2>
+        <p class="muted">Enter the owner password to open the editor.</p>
+        <label>
+          Password
+          <input id="passwordInput" type="password" autocomplete="current-password" />
+        </label>
+        <button class="button" id="loginButton" type="button">Open editor</button>
+        <p class="status" id="loginStatus"></p>
+      </section>
+
+      <section class="hide" id="editor">
+        <div class="section-tabs" id="tabs"></div>
+        <section class="panel">
+          <div class="toolbar">
+            <div>
+              <h2 id="sectionTitle"></h2>
+              <p class="muted" id="sectionHelp"></p>
+            </div>
+            <button class="button secondary" id="addItem" type="button">Add item</button>
+          </div>
+          <div class="content-list" id="contentList"></div>
+          <div class="toolbar">
+            <p class="status" id="saveStatus"></p>
+            <button class="button" id="saveBottom" type="button">Save changes</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      const sections = {
+        updateTicker: {
+          label: 'Top ticker',
+          help: 'Short messages that scroll across the top of the home page.',
+          fields: [{ name: 'value', label: 'Message', type: 'text' }],
+          empty: () => ''
+        },
+        premiumShelf: {
+          label: 'Premium shelf',
+          help: 'Bottle cards on the home page premium shelf section.',
+          fields: [
+            { name: 'name', label: 'Bottle name' },
+            { name: 'category', label: 'Category label' },
+            { name: 'note', label: 'Description', type: 'textarea' },
+            { name: 'image', label: 'Image', type: 'image' }
+          ],
+          empty: () => ({ name: '', category: '', note: '', image: '' })
+        },
+        updateMoments: {
+          label: 'Home updates',
+          help: 'Small update cards near the bottom of the home page.',
+          fields: [
+            { name: 'kicker', label: 'Label' },
+            { name: 'title', label: 'Title' },
+            { name: 'body', label: 'Description', type: 'textarea' }
+          ],
+          empty: () => ({ kicker: '', title: '', body: '' })
+        },
+        featuredUpdates: {
+          label: 'Updates page',
+          help: 'Main update cards on the Updates page.',
+          fields: [
+            { name: 'kicker', label: 'Label' },
+            { name: 'title', label: 'Title' },
+            { name: 'body', label: 'Description', type: 'textarea' },
+            { name: 'cta', label: 'Footer note' },
+            { name: 'image', label: 'Image', type: 'image' }
+          ],
+          empty: () => ({ kicker: '', title: '', body: '', cta: '', image: '' })
+        },
+        tastingUpdates: {
+          label: 'Tastings',
+          help: 'Tasting and pop-up cards on the Updates page.',
+          fields: [
+            { name: 'kicker', label: 'Label' },
+            { name: 'title', label: 'Title' },
+            { name: 'body', label: 'Description', type: 'textarea' },
+            { name: 'image', label: 'Image', type: 'image' },
+            { name: 'alt', label: 'Image description' }
+          ],
+          empty: () => ({ kicker: '', title: '', body: '', image: '', alt: '' })
+        }
+      };
+
+      let password = '';
+      let content = {};
+      let activeSection = 'featuredUpdates';
+      let pendingImages = [];
+
+      const loginPanel = document.getElementById('loginPanel');
+      const editor = document.getElementById('editor');
+      const loginStatus = document.getElementById('loginStatus');
+      const saveStatus = document.getElementById('saveStatus');
+      const contentList = document.getElementById('contentList');
+      const sectionTitle = document.getElementById('sectionTitle');
+      const sectionHelp = document.getElementById('sectionHelp');
+      const tabs = document.getElementById('tabs');
+      const saveTop = document.getElementById('saveTop');
+
+      const sanitizeFileName = (name) => {
+        const parts = name.toLowerCase().split('.');
+        const extension = parts.length > 1 ? parts.pop().replace(/[^a-z0-9]/g, '') : 'jpg';
+        const base = parts.join('.').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'upload';
+        return `${Date.now()}-${base}.${extension}`;
+      };
+
+      const readFileAsDataUrl = (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+
+      async function request(path, options = {}) {
+        const response = await fetch(path, {
+          ...options,
+          headers: {
+            'Content-Type': 'application/json',
+            ...(options.headers || {})
+          }
+        });
+
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(payload.error || 'Something went wrong.');
+        }
+
+        return payload;
+      }
+
+      function setItemValue(index, field, value) {
+        if (activeSection === 'updateTicker') {
+          content[activeSection][index] = value;
+          return;
+        }
+
+        content[activeSection][index][field] = value;
+      }
+
+      function renderTabs() {
+        tabs.innerHTML = '';
+        Object.entries(sections).forEach(([key, section]) => {
+          const button = document.createElement('button');
+          button.className = `tab ${key === activeSection ? 'active' : ''}`;
+          button.type = 'button';
+          button.textContent = section.label;
+          button.addEventListener('click', () => {
+            activeSection = key;
+            render();
+          });
+          tabs.appendChild(button);
+        });
+      }
+
+      function render() {
+        renderTabs();
+
+        const section = sections[activeSection];
+        const items = content[activeSection] || [];
+        sectionTitle.textContent = section.label;
+        sectionHelp.textContent = section.help;
+        contentList.innerHTML = '';
+
+        items.forEach((item, index) => {
+          const card = document.createElement('article');
+          card.className = 'item';
+
+          const grid = document.createElement('div');
+          grid.className = 'field-grid';
+
+          section.fields.forEach((field) => {
+            const value = activeSection === 'updateTicker' ? item : item[field.name] || '';
+            const label = document.createElement('label');
+            label.className = field.type === 'textarea' || field.type === 'image' ? 'full' : '';
+            label.textContent = field.label;
+
+            if (field.type === 'textarea') {
+              const textarea = document.createElement('textarea');
+              textarea.value = value;
+              textarea.addEventListener('input', (event) => setItemValue(index, field.name, event.target.value));
+              label.appendChild(textarea);
+            } else if (field.type === 'image') {
+              const row = document.createElement('div');
+              row.className = 'image-row';
+
+              const preview = document.createElement('img');
+              preview.className = 'preview';
+              preview.alt = '';
+              preview.src = value || '/favicon.svg';
+
+              const controls = document.createElement('div');
+              const pathInput = document.createElement('input');
+              pathInput.value = value;
+              pathInput.placeholder = '/uploads/image.jpg';
+              pathInput.addEventListener('input', (event) => {
+                setItemValue(index, field.name, event.target.value);
+                preview.src = event.target.value || '/favicon.svg';
+              });
+
+              const fileInput = document.createElement('input');
+              fileInput.type = 'file';
+              fileInput.accept = 'image/*';
+              fileInput.addEventListener('change', async (event) => {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const filename = sanitizeFileName(file.name);
+                const publicPath = `/uploads/${filename}`;
+                const repoPath = `public/uploads/${filename}`;
+                const dataUrl = await readFileAsDataUrl(file);
+                pendingImages.push({ path: repoPath, dataUrl });
+                setItemValue(index, field.name, publicPath);
+                pathInput.value = publicPath;
+                preview.src = dataUrl;
+                saveStatus.textContent = 'Image ready. Click Save changes to publish it.';
+              });
+
+              controls.append(pathInput, fileInput);
+              row.append(preview, controls);
+              label.appendChild(row);
+            } else {
+              const input = document.createElement('input');
+              input.value = value;
+              input.addEventListener('input', (event) => setItemValue(index, field.name, event.target.value));
+              label.appendChild(input);
+            }
+
+            grid.appendChild(label);
+          });
+
+          const remove = document.createElement('button');
+          remove.className = 'button secondary danger';
+          remove.type = 'button';
+          remove.textContent = 'Remove';
+          remove.addEventListener('click', () => {
+            content[activeSection].splice(index, 1);
+            render();
+          });
+
+          card.append(grid, remove);
+          contentList.appendChild(card);
+        });
+      }
+
+      async function loadEditor() {
+        password = document.getElementById('passwordInput').value;
+        loginStatus.textContent = 'Opening editor...';
+
+        try {
+          const payload = await request('/api/owner-content', {
+            method: 'POST',
+            body: JSON.stringify({ password, action: 'load' })
+          });
+          content = payload.content;
+          loginPanel.classList.add('hide');
+          editor.classList.remove('hide');
+          saveTop.classList.remove('hide');
+          loginStatus.textContent = '';
+          render();
+        } catch (error) {
+          loginStatus.textContent = error.message;
+        }
+      }
+
+      async function saveEditor() {
+        saveStatus.textContent = 'Saving changes...';
+        saveTop.disabled = true;
+
+        try {
+          await request('/api/owner-content', {
+            method: 'POST',
+            body: JSON.stringify({
+              password,
+              action: 'save',
+              content,
+              images: pendingImages
+            })
+          });
+          pendingImages = [];
+          saveStatus.textContent = 'Saved. The live site will update after the next deployment finishes.';
+        } catch (error) {
+          saveStatus.textContent = error.message;
+        } finally {
+          saveTop.disabled = false;
+        }
+      }
+
+      document.getElementById('loginButton').addEventListener('click', loadEditor);
+      document.getElementById('passwordInput').addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') loadEditor();
+      });
+      document.getElementById('addItem').addEventListener('click', () => {
+        content[activeSection] = content[activeSection] || [];
+        content[activeSection].push(sections[activeSection].empty());
+        render();
+      });
+      document.getElementById('saveBottom').addEventListener('click', saveEditor);
+      saveTop.addEventListener('click', saveEditor);
+    </script>
+  </body>
+</html>
