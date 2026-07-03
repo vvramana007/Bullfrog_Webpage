@@ -25,7 +25,7 @@ npm run build
 - Cocktail recipe pages
 - Header search across categories, pages, and cocktails
 - Scrolling update ticker + photo ribbon
-- Inquiry form via FormSubmit (currently pointed at support@bullfrogwineandspirits.com — update in `src/data/site.js` when the email is finalized)
+- Inquiry form via FormSubmit (pointed at support@bullfrogliquor.com — configured in `src/data/site.js`)
 - Owner admin channel at `/admin` (backed by `api/owner-content.js`)
 
 ## Deployment notes (Vercel)

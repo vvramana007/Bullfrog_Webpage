@@ -6,8 +6,8 @@ function navigateTo(path) {
 
 export default function SiteFooter() {
   return (
-    <footer className="site-footer">
-      <div className="shell footer-layout">
+    <footer className="site-footer footer-band">
+      <div className="shell footer-band-layout">
         <div className="footer-brand">
           <img className="footer-logo" src={businessInfo.logo} alt="Bullfrog Wine &amp; Spirits logo" />
           <p className="footer-copy">{businessInfo.tagline}</p>
@@ -39,6 +39,13 @@ export default function SiteFooter() {
           <a className="footer-social-link" href={businessInfo.instagramLink} target="_blank" rel="noreferrer">
             Follow on Instagram
           </a>
+        </div>
+      </div>
+
+      <div className="footer-baseline">
+        <div className="shell footer-baseline-inner">
+          <span>21+ only. Please drink responsibly.</span>
+          <span>{businessInfo.address}</span>
         </div>
       </div>
     </footer>

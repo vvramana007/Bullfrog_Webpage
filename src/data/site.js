@@ -2,18 +2,18 @@ import ownerContent from './owner-content.json';
 
 export const businessInfo = {
   name: 'Bullfrog Wine & Spirits',
-  tagline: 'North Fort Collins\' easy stop for cold beer, wine, and a spirits wall worth browsing.',
+  tagline: 'The no-nonsense bottle shop on North College — cold beer, deep spirits, quick stops.',
   address: '1820 N College Ave #100, Fort Collins, CO 80524',
   phone: '(970) 221-9100',
-  inquiryEmail: 'support@bullfrogwineandspirits.com',
-  hoursSummary: 'Mon-Sat 8:30AM-11PM, Sun 10AM-10PM',
+  inquiryEmail: 'support@bullfrogliquor.com',
+  hoursSummary: 'Mon-Sat 8:30AM-11PM, Sun 8:30AM-10PM',
   locationNote: 'Right on North College Ave, minutes from Old Town and easy to reach from Highway 287.',
   visitBlurb:
-    'Fast cold beer, approachable wine picks, and a spirits selection that covers everything from weeknight staples to allocated bottles.',
+    'A cold wall that stays cold, wine that is easy to pick, and a spirits shelf that runs from weeknight staples to allocated bottles you will not find across town.',
   visitHighlights: [
-    'Easy access from North College Ave, Old Town, and Highway 287',
-    'Quick in-and-out stop for cold beer, mixers, wine, and spirits',
-    'Helpful staff for recommendations, pairings, and standout bottle picks',
+    'Right on North College Ave — quick to reach from Old Town or Highway 287',
+    'In-and-out in minutes: cold beer, mixers, wine, and spirits under one roof',
+    'Straight answers from staff who know the shelf, not a sales pitch',
   ],
   logo: '/store-media/Logo.jpg',
   instagramLink: 'https://www.instagram.com/BULLFROGWINEANDSPIRITS/',
@@ -23,7 +23,7 @@ export const businessInfo = {
 
 export const ageGateContent = {
   eyebrow: 'Age verification',
-  title: 'Please confirm you are 21 or older to enter Bullfrog Wine & Spirits.',
+  title: 'You have to be 21+ to hop in.',
   body: 'By entering this site, you confirm that you are of legal drinking age in your location.',
   exitLink: 'https://www.google.com/',
 };
@@ -37,26 +37,26 @@ export const navigation = [
 ];
 
 export const quickStats = [
-  { value: 'Cold walls', label: 'beer and ready-to-drink picks kept cold' },
-  { value: 'N College', label: 'an easy stop between Old Town and north Fort Collins' },
-  { value: 'Open 7 days', label: 'ready for weeknights, weekends, and last-minute plans' },
+  { value: 'Ice cold', label: 'the beer wall stays stocked and seriously cold' },
+  { value: 'N College', label: 'two minutes off Old Town, easy parking out front' },
+  { value: '7 days', label: 'open late for weeknights, weekends, and last-minute plans' },
 ];
 
 export const campusHighlights = [
   {
     tag: 'Game day run',
-    title: 'Cold beer wall',
-    body: 'Quick grab-and-go picks when the group chat suddenly becomes a plan.',
+    title: 'Hit the cold wall',
+    body: 'Grab-and-go beer and seltzers for when the group chat suddenly becomes a plan.',
   },
   {
     tag: 'Dinner bottle',
-    title: 'Wine that is easy to choose',
-    body: 'Helpful guidance for gifts, dinners, and bottles that feel like a better call.',
+    title: 'Wine without the wine talk',
+    body: 'Tell us the food and the budget — walk out with a bottle that works.',
   },
   {
     tag: 'Weekend pickup',
-    title: 'Spirits + mixers in one stop',
-    body: 'Tequila, vodka, whiskey, and the extras you need without bouncing around town.',
+    title: 'Spirits + mixers, one stop',
+    body: 'Tequila, vodka, whiskey, and everything that goes with them. No bouncing around town.',
   },
 ];
 
@@ -64,23 +64,23 @@ export const updateTicker = ownerContent.updateTicker;
 
 export const homeFeaturePanels = [
   {
-    tag: 'Trending now',
+    tag: 'Moving fast',
     title: 'Tequila and canned cocktails',
-    body: 'Fast-moving picks for patios, parties, and easy weekend plans.',
+    body: 'The patio-season shelf. If it is hot on Instagram, it is probably already here.',
     link: '#/category/tequila',
     action: 'Explore tequila',
   },
   {
-    tag: 'Staff pick',
-    title: 'Bottle advice without the guesswork',
-    body: 'Use the store for quick recommendations on wine, whiskey, and easy mixer pairings.',
+    tag: 'Ask us',
+    title: 'Skip the guesswork',
+    body: 'Thirty seconds with our staff beats thirty minutes of label-reading. Just ask.',
     link: '#/contact',
     action: 'Contact the store',
   },
   {
     tag: 'How-to',
-    title: 'Simple drinks you can make tonight',
-    body: 'Easy cocktail recipes help turn a bottle run into a plan for the night.',
+    title: 'Drinks you can build tonight',
+    body: 'Short recipes that turn a bottle run into the whole plan for the evening.',
     link: '#/cocktail/paloma',
     action: 'View recipes',
   },
@@ -92,14 +92,14 @@ const promoImage = (fileName) => `/promo-media/${fileName}`;
 export const premiumShelf = ownerContent.premiumShelf;
 
 export const beerWineSpirits = [
-  'Cold beer',
-  'Wine night picks',
+  'The cold wall',
+  'Wine night, sorted',
   'Party mixers',
   'Game day runs',
-  'Premium spirits',
+  'Allocated bottles',
   'Local favorites',
   'Quick stop snacks',
-  'Last-minute hosts',
+  'Host-saver picks',
 ];
 
 export const spiritCategoryTabs = [

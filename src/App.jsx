@@ -188,55 +188,52 @@ function HomePage() {
     <>
       <UpdateTicker />
 
-      <section className="hero-shell shell">
-        <div className="retail-hero">
-          <div className="hero-copy">
-            <p className="eyebrow">Fort Collins liquor store | 21+</p>
-            <h1>Cold beer, wine, spirits, mixers, and better bottles for every kind of night.</h1>
-            <p className="hero-lead">
-              Swing in for chilled beer, ready-to-drink picks, wine, spirits, and friendly help finding
-              the right bottle for tonight, this weekend, or the next celebration.
-            </p>
-            <div className="hero-actions">
-              <a className="button button-solid" href="#/selection">
-                Browse categories
-              </a>
-              <a className="button button-soft" href="#/contact">
-                Get directions
-              </a>
-            </div>
+      <section className="hero-banner">
+        <img
+          className="hero-banner-image"
+          src={pages.home.heroPoster}
+          alt="Bullfrog Wine &amp; Spirits storefront on North College Ave"
+        />
+        <div className="hero-banner-overlay" />
+        <div className="shell hero-banner-content">
+          <p className="eyebrow hero-banner-eyebrow">N College Ave, Fort Collins | 21+</p>
+          <h1>Cold beer. Rare bourbon. Zero runaround.</h1>
+          <p className="hero-lead">
+            Bullfrog keeps it simple: a cold wall that stays stocked, a spirits shelf that goes
+            deeper than you expect, and staff who point you to the right bottle instead of the
+            expensive one.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-solid" href="#/selection">
+              Shop the shelves
+            </a>
+            <a className="button button-outline-light" href="#/contact">
+              Hop in — directions
+            </a>
           </div>
-
-          <div className="hero-stage retail-stage">
-            <div className="hero-stage-main">
-              <img className="hero-image" src={pages.home.heroPoster} alt="Bullfrog Wine &amp; Spirits storefront on North College Ave" />
-            </div>
-          </div>
-
-          <div className="deal-stack">
+        </div>
+        <div className="hero-stat-band">
+          <div className="shell hero-stat-band-inner">
             {quickStats.map((item) => (
-              <article className="deal-card" key={item.label}>
-                <p className="eyebrow">Store highlight</p>
+              <div className="hero-stat" key={item.label}>
                 <strong>{item.value}</strong>
                 <span>{item.label}</span>
-              </article>
-            ))}
-            {pages.home.quotes.map((quote) => (
-              <div className="quote-pill" key={quote}>
-                {quote}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="promo-band">
-        <div className="shell promo-grid">
-          {campusHighlights.map((item) => (
-            <article className="promo-card" key={item.title}>
-              <p>{item.tag}</p>
-              <h3>{item.title}</h3>
-              <span>{item.body}</span>
+      <section className="promo-band promo-band-green">
+        <div className="shell promo-row">
+          {campusHighlights.map((item, index) => (
+            <article className="promo-row-item" key={item.title}>
+              <span className="promo-row-number">{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <p className="promo-row-tag">{item.tag}</p>
+                <h3>{item.title}</h3>
+                <span className="promo-row-body">{item.body}</span>
+              </div>
             </article>
           ))}
         </div>
@@ -264,18 +261,16 @@ function HomePage() {
       </section>
 
       <section className="shell content-block">
-        <div className="premium-showcase">
-          <div className="premium-showcase-intro">
-            <SectionHeading
-              eyebrow="Premium shelf"
-              title="Premium bottles worth slowing down for."
-              body="Browse standout tequila, bourbon, whiskey, and limited releases selected for gifting, collecting, and special occasions."
-            />
-          </div>
+        <div className="premium-shelf-block">
+          <SectionHeading
+            eyebrow="Premium shelf"
+            title="Premium bottles worth slowing down for."
+            body="Browse standout tequila, bourbon, whiskey, and limited releases selected for gifting, collecting, and special occasions. Scroll the shelf."
+          />
 
-          <div className="premium-showcase-grid">
+          <div className="premium-scroll">
             {premiumShelf.map((item) => (
-              <article className="premium-card" key={item.name}>
+              <article className="premium-card premium-scroll-card" key={item.name}>
                 <div className="premium-card-image">
                   <img src={item.image} alt={item.name} />
                 </div>
@@ -294,11 +289,11 @@ function HomePage() {
         <div className="retail-feature-grid">
           <div className="retail-feature-main">
             <p className="eyebrow">Store spotlight</p>
-            <h2>A better bottle run starts with an easier store to shop.</h2>
+            <h2>In, out, and on with your night in five minutes flat.</h2>
             <p>
-              Find cold beer, ready-to-drink favorites, wine, mixers, and premium spirits without
-              making the errand complicated. Stop in for a quick pickup or take a little time to
-              browse what is new.
+              No maze, no guesswork. Cold beer up front, mixers next to the spirits that need them,
+              and clear signs over every aisle. Grab what you came for or take a lap and see what
+              is new on the shelf.
             </p>
             <div className="quick-link-row">
               <a className="quick-link-card" href="#/selection">Browse categories</a>

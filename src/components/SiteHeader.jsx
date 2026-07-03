@@ -64,15 +64,7 @@ export default function SiteHeader({ currentRoute, theme, onThemeToggle }) {
 
   return (
     <header className="site-header">
-      <div className="topbar">
-        <div className="shell topbar-inner">
-          <span>21+ only</span>
-          <span>{businessInfo.address}</span>
-          <span>{businessInfo.hoursSummary}</span>
-        </div>
-      </div>
-
-      <div className="shell header-main">
+      <div className="shell header-row">
         <a
           className="brand-mark"
           href="#/"
@@ -85,35 +77,45 @@ export default function SiteHeader({ currentRoute, theme, onThemeToggle }) {
           <img src={businessInfo.logo} alt="Bullfrog Wine &amp; Spirits logo" />
         </a>
 
-        <form className="header-search" aria-label="Search" onSubmit={handleSearchSubmit}>
-          <span className="header-search-icon">Search</span>
-          <input
-            className="header-search-input"
-            type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search whiskey, tequila, vodka, contact..."
-          />
-          {searchMatches.length > 0 ? (
-            <div className="search-results">
-              {searchMatches.map((item) => (
-                <button
-                  className="search-result-item"
-                  key={`${item.path}-${item.label}`}
-                  type="button"
-                  onClick={() => {
-                    navigateTo(item.path);
-                    setQuery('');
-                  }}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          ) : null}
-        </form>
+        <nav className={`nav-panel ${menuOpen ? 'nav-panel-open' : ''}`}>
+          {navigation.map((item) => (
+            <NavLink
+              item={item}
+              key={item.path}
+              currentRoute={currentRoute}
+              onClick={() => setMenuOpen(false)}
+            />
+          ))}
+        </nav>
 
         <div className="header-actions">
+          <form className="header-search" aria-label="Search" onSubmit={handleSearchSubmit}>
+            <input
+              className="header-search-input"
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search the store..."
+            />
+            {searchMatches.length > 0 ? (
+              <div className="search-results">
+                {searchMatches.map((item) => (
+                  <button
+                    className="search-result-item"
+                    key={`${item.path}-${item.label}`}
+                    type="button"
+                    onClick={() => {
+                      navigateTo(item.path);
+                      setQuery('');
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+          </form>
+
           <button
             className="theme-toggle"
             type="button"
@@ -123,16 +125,6 @@ export default function SiteHeader({ currentRoute, theme, onThemeToggle }) {
           >
             {theme === 'light' ? 'Dark' : 'Light'}
           </button>
-          <a
-            className="header-action-link"
-            href="#/contact"
-            onClick={(event) => {
-              event.preventDefault();
-              navigateTo('/contact');
-            }}
-          >
-            Find Store
-          </a>
           <a
             className="instagram-icon-link"
             href={businessInfo.instagramLink}
@@ -158,27 +150,6 @@ export default function SiteHeader({ currentRoute, theme, onThemeToggle }) {
           <span />
           <span />
         </button>
-      </div>
-
-      <div className="nav-shell shell">
-        <nav className={`nav-panel ${menuOpen ? 'nav-panel-open' : ''}`}>
-          {navigation.map((item) => (
-            <NavLink
-              item={item}
-              key={item.path}
-              currentRoute={currentRoute}
-              onClick={() => setMenuOpen(false)}
-            />
-          ))}
-        </nav>
-
-        <div className="category-strip">
-          {spiritCategoryTabs.slice(0, 6).map((item) => (
-            <a className="category-strip-item" href={`#/category/${item.slug}`} key={item.slug}>
-              {item.label}
-            </a>
-          ))}
-        </div>
       </div>
     </header>
   );
