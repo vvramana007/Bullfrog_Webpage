@@ -6,7 +6,7 @@ export const businessInfo = {
   address: '1820 N College Ave #100, Fort Collins, CO 80524',
   phone: '(970) 221-9100',
   inquiryEmail: 'support@bullfrogwineandspirits.com',
-  hoursSummary: 'Mon-Fri 8:30AM-10PM, Sat 9AM-10PM, Sun 9AM-8PM',
+  hoursSummary: 'Mon-Sat 8:30AM-11PM, Sun 10AM-10PM',
   locationNote: 'Right on North College Ave, minutes from Old Town and easy to reach from Highway 287.',
   visitBlurb:
     'Fast cold beer, approachable wine picks, and a spirits selection that covers everything from weeknight staples to allocated bottles.',
@@ -175,10 +175,10 @@ export const categoryPages = {
     history:
       'Whiskey developed from early grain distillation traditions in Ireland and Scotland, then spread into regional styles shaped by grain choice, barrel aging, and local rules. American whiskey later introduced bourbon and rye as major identities, each with their own mash bills and oak influence.',
     bottles: [
-      { name: 'Weller Full Proof', style: 'Bold, wheated, rich', note: 'A stronger wheated bourbon profile with collector appeal.', image: promoImage('weller-full-proof-bullfrog.jpeg') },
-      { name: 'Wilderness Trail Rye', style: 'Spice, vanilla, oak', note: 'A bottled-in-bond rye feature with a bold small-batch identity.', image: promoImage('wilderness-trail-poster.jpeg') },
-      { name: 'Bomberger\'s Declaration', style: 'Full-bodied bourbon', note: 'A premium heritage-style bourbon visual for bottle hunters.', image: promoImage('bombergers-declaration.jpeg') },
-      { name: 'Ben Holladay lineup', style: 'Bourbon collection', note: 'A lineup view that helps the whiskey category feel deep and collectible.', image: promoImage('ben-holladay-lineup.jpeg') },
+      { name: 'Michter\'s 10 Year', style: 'Aged, rich, complex', note: 'A single barrel Kentucky straight bourbon at the pinnacle of tradition and patience.', image: promoImage('michters-10-year.jpeg') },
+      { name: 'Eagle Rare 12 Year', style: 'Toffee, honey, toasted oak', note: 'An award-winning bourbon with a long, elegant finish. Exclusive and rare.', image: promoImage('eagle-rare-12.jpeg') },
+      { name: 'Willett Family Estate', style: 'Cask strength, 128.6 proof', note: 'A limited-allocation Kentucky bourbon and a true expression of tradition and heritage.', image: promoImage('willett-family-estate.jpeg') },
+      { name: 'Bourye', style: 'Bourbon-rye blend', note: 'A High West blend of straight whiskeys that shows how two families can share one bottle.', image: promoImage('bourye.jpeg') },
     ],
   },
   tequila: {
@@ -190,10 +190,10 @@ export const categoryPages = {
     history:
       'Tequila grew out of distilled agave traditions in western Mexico, especially Jalisco. Modern tequila became defined by blue agave production and legal standards that protect its place of origin and style categories.',
     bottles: [
-      { name: 'Fortaleza Blanco', style: 'Fresh agave, citrus, pepper', note: 'A blanco tequila feature focused on tradition and agave purity.', image: promoImage('fortaleza-bullfrog.jpeg') },
-      { name: 'Don Julio 1942', style: 'Aged, polished, collectible', note: 'A premium anejo-style collector bottle with strong visual presence.', image: promoImage('don-julio-1942-world-cup.jpeg') },
-      { name: 'Tears of Llorona', style: 'Extra anejo, deep oak', note: 'A luxury tequila image that shows the higher-end side of the category.', image: promoImage('tears-of-llorona.jpeg') },
-      { name: 'Ilegal Mezcal', style: 'Smoky agave cousin', note: 'A mezcal display feature that rounds out the agave family beyond tequila.', image: promoImage('ilegal-mezcal-display.jpeg') },
+      { name: 'Patron El Alto', style: 'Rare, polished, premium', note: 'A high-end agave feature from the store\'s curated rare spirits selection.', image: promoImage('patron-el-alto.jpeg') },
+      { name: 'Casamigos lineup', style: 'Blanco, reposado, and more', note: 'A recognizable tequila family that covers margaritas through slow sipping.', image: promoImage('casamigos-world-cup.jpeg') },
+      { name: 'Margarita central', style: 'Mixers, tequila, and citrus', note: 'Everything you need to make world-class margaritas at home, in one display.', image: promoImage('margarita-display.jpeg') },
+      { name: 'Patron El Alto feature', style: 'Curated rare agave', note: 'A second look at the premium side of the agave shelf.', image: promoImage('patron-el-alto-alt.jpeg') },
     ],
   },
   vodka: {
@@ -265,10 +265,10 @@ export const categoryPages = {
     history:
       'Liqueurs grew from infused or sweetened spirits tied to herbal traditions, monasteries, and regional ingredients. Over time they expanded into coffee, orange, cream, bitter, and aperitivo categories with very different uses.',
     bottles: [
-      { name: '477 Coffee Spirit', style: 'Roast, cocoa, sweetness', note: 'A local coffee-spirit feature with a clear dessert and cocktail lane.', image: promoImage('coffee-spirit-477.jpeg') },
-      { name: 'St. George Spiced Pear', style: 'Pear, spice, soft sweetness', note: 'A fruit liqueur pick that works for seasonal drinks and after-dinner pours.', image: promoImage('st-george-spiced-pear.jpeg') },
-      { name: 'Five Farms Irish Cream', style: 'Silky, cream, vanilla', note: 'A cream liqueur image that makes the category feel rich and giftable.', image: promoImage('five-farms-irish-cream.jpeg') },
-      { name: 'Five Farms tasting feature', style: 'Cream, dessert, after-dinner pours', note: 'A store-facing liqueur feature that fits tastings, gifting, and seasonal dessert drinks.', image: promoImage('five-farms-irish-cream-store.jpeg') },
+      { name: 'Chartreuse Green', style: 'Herbal, complex, rare', note: 'A highly allocated French herbal liqueur for collectors and cocktail lovers.', image: promoImage('chartreuse-green.jpeg') },
+      { name: 'Stella Rosa Chocolate Hazelnut', style: 'Cream, chocolate, hazelnut', note: 'A dessert-forward cream liqueur that makes the category feel rich and giftable.', image: promoImage('stella-rosa.jpeg') },
+      { name: 'Stella Rosa luxury pour', style: 'Indulgent, after-dinner', note: 'A second look at a cream liqueur built for slow, luxurious sipping.', image: promoImage('stella-rosa-luxury.jpeg') },
+      { name: 'Lot 40 Manhattan bundle', style: 'Rye + Luxardo cherries', note: 'A bundled pick that pairs Canadian rye with premium ingredients for the ultimate Manhattan.', image: promoImage('lot-40-manhattan-bundle.jpeg') },
     ],
   },
   'ready-to-drink': {
@@ -280,10 +280,10 @@ export const categoryPages = {
     history:
       'Ready-to-drink beverages grew from canned cocktail culture, flavored malt beverages, and spirit-based convenience packaging. Their popularity surged as consumers wanted bar-inspired drinks with less prep and consistent flavor.',
     bottles: [
-      { name: 'Mixed Up Cocktail Co.', style: 'Canned cocktail tasting', note: 'A real in-store tasting image that fits the RTD and cocktail can category.', image: promoImage('mixed-up-cocktail-tasting.jpeg') },
-      { name: 'Happy Dad Seltzer', style: 'Hard seltzer, easy drinking', note: 'A customer-facing display moment for ready-to-drink seltzers.', image: promoImage('happy-dad-store-moment.jpeg') },
-      { name: 'Fabric tasting display', style: 'Canned beverage tasting', note: 'A tasting table image that shows grab-and-go beverage sampling in the store.', image: promoImage('fabric-tasting-table.jpeg') },
-      { name: 'Happy Dad store visit', style: 'Featured RTD display', note: 'A second in-store display moment that keeps the category approachable and current.', image: promoImage('happy-dad-customer-lime.jpeg') },
+      { name: 'Canned cocktail lineup', style: 'Margarita, martini, old fashioned', note: 'Four iconic cocktails in ready-to-pour cans, chilled and ready for home or parties.', image: promoImage('rtd-cocktails.jpeg') },
+      { name: 'Margarita station', style: 'Grab-and-go margarita picks', note: 'Premium spirits, mixers, and margarita essentials pulled together in one display.', image: promoImage('margarita-display.jpeg') },
+      { name: 'Busch Light Lime', style: 'Crisp, refreshing, lime', note: 'A cold, easy-drinking summer pick from the beer wall.', image: promoImage('busch-light-lime.jpeg') },
+      { name: 'Cooler doors', style: 'Cold and ready to go', note: 'The cold walls keep seltzers, cans, and party packs ready for the fastest stops.', image: '/store-media/cooler-aisle.jpeg' },
     ],
   },
 };
@@ -299,8 +299,8 @@ export const categoryStories = [
       { label: 'Best for', value: 'Game day, house parties, quick cold runs' },
       { label: 'Look for', value: 'Local craft, easy packs, fast grab-and-go picks' },
     ],
-    image: promoImage('fat-tire-amber-ale.jpeg'),
-    alt: 'New Belgium Fat Tire Amber Ale promotional image',
+    image: promoImage('busch-light-lime.jpeg'),
+    alt: 'Busch Light Lime promotional graphic for Bullfrog Wine & Spirits',
   },
   {
     kicker: 'Wine',
@@ -312,8 +312,8 @@ export const categoryStories = [
       { label: 'Best for', value: 'Dinner bottles, gifts, date night, host stops' },
       { label: 'Look for', value: 'Easy reds, crisp whites, bottles that feel elevated' },
     ],
-    image: wikiImage('Limoncello Spritz mit Prosecco.jpg'),
-    alt: 'Sparkling wine spritz served in a stemmed glass',
+    image: '/store-media/aisle-wine.jpeg',
+    alt: 'Wine and spirits aisles inside Bullfrog Wine & Spirits',
   },
   {
     kicker: 'Spirits',
@@ -325,8 +325,8 @@ export const categoryStories = [
       { label: 'Best for', value: 'Top-shelf browsing, cocktails, gifting, collector stops' },
       { label: 'Look for', value: 'Premium tequila, whiskey, vodka, and featured bottle displays' },
     ],
-    image: promoImage('ilegal-mezcal-display.jpeg'),
-    alt: 'Featured spirits display at Bullfrog Wine & Spirits',
+    image: '/store-media/aisle-spirits.jpeg',
+    alt: 'Spirits aisle inside Bullfrog Wine & Spirits',
   },
 ];
 
@@ -514,66 +514,66 @@ export const cocktailCentral = {
 
 export const sliderPhotos = [
   {
-    src: promoImage('weller-full-proof-bullfrog.jpeg'),
-    alt: 'Weller Full Proof promotional bottle graphic for Bullfrog Wine & Spirits',
-    caption: 'Premium bourbon picks bring collector appeal to the shelf.',
+    src: '/store-media/storefront.jpeg',
+    alt: 'Bullfrog Wine & Spirits storefront on North College Ave',
+    caption: 'The Bullfrog storefront is easy to spot right on North College Ave.',
   },
   {
-    src: promoImage('fortaleza-bullfrog.jpeg'),
-    alt: 'Fortaleza Blanco tequila promotional graphic for Bullfrog Wine & Spirits',
+    src: '/store-media/interior-front.jpeg',
+    alt: 'Front sales floor inside Bullfrog Wine & Spirits',
+    caption: 'A bright, open sales floor makes browsing feel fast and easy.',
+  },
+  {
+    src: '/store-media/aisle-spirits.jpeg',
+    alt: 'Spirits aisle inside Bullfrog Wine & Spirits',
+    caption: 'The spirits aisles are stocked deep with staples and standouts.',
+  },
+  {
+    src: '/store-media/aisle-wine.jpeg',
+    alt: 'Wine aisle inside Bullfrog Wine & Spirits',
+    caption: 'Wine picks stay easy to compare with wide, clear aisles.',
+  },
+  {
+    src: '/store-media/svedka-display.jpeg',
+    alt: 'Featured display inside Bullfrog Wine & Spirits',
+    caption: 'Featured displays add color and energy in the middle of the store.',
+  },
+  {
+    src: '/store-media/aisle-displays.jpeg',
+    alt: 'Featured stacks and displays inside Bullfrog Wine & Spirits',
+    caption: 'Featured stacks keep the store feeling open and easy to shop.',
+  },
+  {
+    src: '/store-media/cooler-aisle.jpeg',
+    alt: 'Cooler aisle inside Bullfrog Wine & Spirits',
+    caption: 'Cold walls keep beer, seltzers, and RTDs ready for quick pickups.',
+  },
+  {
+    src: '/store-media/cooler-vodka.jpeg',
+    alt: 'Coolers and vodka section inside Bullfrog Wine & Spirits',
+    caption: 'Cold selections sit right beside the spirits for one-stop runs.',
+  },
+  {
+    src: promoImage('weller-lineup.jpeg'),
+    alt: 'Weller bourbon lineup promotional graphic for Bullfrog Wine & Spirits',
+    caption: 'Allocated bourbon lineups bring collector appeal to the shelf.',
+  },
+  {
+    src: promoImage('michters-10-year.jpeg'),
+    alt: 'Michter\'s 10 Year bourbon promotional graphic for Bullfrog Wine & Spirits',
+    caption: 'Legendary bourbon features make the premium section feel curated.',
+  },
+  {
+    src: promoImage('casamigos-world-cup.jpeg'),
+    alt: 'Casamigos tequila lineup promotional graphic for Bullfrog Wine & Spirits',
     caption: 'Premium tequila features make agave shopping easier to browse.',
-  },
-  {
-    src: promoImage('weller-single-barrel-bullfrog.jpeg'),
-    alt: 'Weller Single Barrel promotional graphic for Bullfrog Wine & Spirits',
-    caption: 'Allocated bourbon arrivals are worth watching for.',
-  },
-  {
-    src: promoImage('woodford-derby.jpeg'),
-    alt: 'Woodford Reserve Kentucky Derby bottle and rocks glass',
-    caption: 'Seasonal bottles are ready for derby parties, gifting, and special pours.',
-  },
-  {
-    src: promoImage('ben-holladay-lineup.jpeg'),
-    alt: 'Ben Holladay bourbon lineup promotional image',
-    caption: 'Bottle lineups make it easier to compare styles at a glance.',
-  },
-  {
-    src: promoImage('tears-of-llorona.jpeg'),
-    alt: 'Tears of Llorona extra anejo tequila promotional image',
-    caption: 'Luxury tequila picks give the premium shelf real depth.',
-  },
-  {
-    src: promoImage('ilegal-mezcal-display.jpeg'),
-    alt: 'Ilegal Mezcal featured display',
-    caption: 'Featured displays keep the spirits aisle fun to browse.',
-  },
-  {
-    src: promoImage('heaven-hill-heritage-22.jpeg'),
-    alt: 'Heaven Hill Heritage Collection promotional image',
-    caption: 'Aged whiskey features make the premium section feel curated.',
-  },
-  {
-    src: promoImage('makers-mark-wood-finish.jpeg'),
-    alt: 'Maker\'s Mark Wood Finishing Series promotional image',
-    caption: 'Limited bourbon releases land here before they sell through.',
-  },
-  {
-    src: promoImage('st-george-spiced-pear.jpeg'),
-    alt: 'St. George Spiced Pear liqueur promotional image',
-    caption: 'Seasonal liqueurs round out gifts and dessert pours.',
-  },
-  {
-    src: promoImage('fat-tire-amber-ale.jpeg'),
-    alt: 'New Belgium Fat Tire Amber Ale promotional image',
-    caption: 'Beer favorites round out the stop for weekends and quick cold runs.',
   },
 ];
 
 export const pages = {
   home: {
     heroVideo: '',
-    heroPoster: promoImage('fortaleza-bullfrog.jpeg'),
+    heroPoster: '/store-media/storefront.jpeg',
     quotes: [
       'Cold beer for game day, pregame plans, and last-minute runs',
       'Whether it is a quick beer run, a weekend party pack, or the bottle that makes the night feel planned, Bullfrog keeps it easy.',
@@ -584,6 +584,6 @@ export const pages = {
     ],
   },
   contact: {
-    image: promoImage('weller-single-barrel-bullfrog.jpeg'),
+    image: '/store-media/interior-front.jpeg',
   },
 };

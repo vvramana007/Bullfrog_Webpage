@@ -209,7 +209,7 @@ function HomePage() {
 
           <div className="hero-stage retail-stage">
             <div className="hero-stage-main">
-              <img className="hero-image" src={pages.home.heroPoster} alt="Featured bottle graphic for Bullfrog Wine &amp; Spirits" />
+              <img className="hero-image" src={pages.home.heroPoster} alt="Bullfrog Wine &amp; Spirits storefront on North College Ave" />
             </div>
           </div>
 
@@ -711,7 +711,7 @@ function ContactPage() {
           </article>
 
           <article className="visit-card">
-            <img src={pages.contact.image} alt="Featured bourbon graphic for Bullfrog Wine &amp; Spirits" />
+            <img src={pages.contact.image} alt="Front sales floor inside Bullfrog Wine &amp; Spirits" />
             <div className="visit-copy">
               <h3>{businessInfo.locationNote}</h3>
               <p>{businessInfo.visitBlurb}</p>
