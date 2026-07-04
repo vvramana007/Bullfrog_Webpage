@@ -192,6 +192,120 @@
         display: none;
       }
 
+      /* Tasting calendar */
+      .cal-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .cal-title {
+        font-size: 1.15rem;
+        font-weight: 800;
+      }
+
+      .cal-nav {
+        display: flex;
+        gap: 8px;
+      }
+
+      .cal-grid {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .cal-weekday {
+        text-align: center;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #716960;
+        padding: 4px 0;
+      }
+
+      .cal-day {
+        min-height: 74px;
+        padding: 6px;
+        border: 1px solid #ded5c8;
+        border-radius: 8px;
+        background: white;
+        cursor: pointer;
+        text-align: left;
+        display: grid;
+        align-content: start;
+        gap: 4px;
+      }
+
+      .cal-day:hover {
+        border-color: #1d5638;
+      }
+
+      .cal-day.empty {
+        background: transparent;
+        border: 0;
+        cursor: default;
+      }
+
+      .cal-day.has-note {
+        background: #e4f0e6;
+        border-color: #1d5638;
+      }
+
+      .cal-day.selected {
+        outline: 3px solid #1d5638;
+        outline-offset: -1px;
+      }
+
+      .cal-day-number {
+        font-weight: 800;
+        font-size: 0.85rem;
+      }
+
+      .cal-day-note {
+        font-size: 0.7rem;
+        line-height: 1.35;
+        color: #33413a;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+
+      .cal-editor {
+        margin-top: 16px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .cal-editor-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .cal-upcoming {
+        margin-top: 20px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .cal-upcoming-item {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        font-size: 0.88rem;
+        border-top: 1px solid #ded5c8;
+        padding-top: 8px;
+      }
+
+      .cal-upcoming-item strong {
+        white-space: nowrap;
+      }
+
       @media (max-width: 720px) {
         .topbar,
         .toolbar,
@@ -205,6 +319,14 @@
           width: 100%;
           max-width: 220px;
         }
+
+        .cal-day {
+          min-height: 54px;
+        }
+
+        .cal-day-note {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -213,7 +335,7 @@
       <div class="topbar">
         <div>
           <h1>Bullfrog Wine &amp; Spirits updates</h1>
-          <p class="muted">Edit website cards, add fresh updates, and upload images.</p>
+          <p class="muted">Post updates and events, manage the site's photos, and schedule tasting slots.</p>
         </div>
         <button class="button secondary hide" id="saveTop" type="button">Save changes</button>
       </div>
@@ -279,7 +401,7 @@
         },
         featuredUpdates: {
           label: 'Updates page',
-          help: 'Main update cards on the Updates page.',
+          help: 'Main update and event cards on the Updates page.',
           fields: [
             { name: 'kicker', label: 'Label' },
             { name: 'title', label: 'Title' },
@@ -300,6 +422,33 @@
             { name: 'alt', label: 'Image description' }
           ],
           empty: () => ({ kicker: '', title: '', body: '', image: '', alt: '' })
+        },
+        siteGallery: {
+          label: 'Photo gallery',
+          help: 'The scrolling photo strip on the home page. Add new pictures or remove old ones.',
+          fields: [
+            { name: 'src', label: 'Image', type: 'image' },
+            { name: 'caption', label: 'Caption' },
+            { name: 'alt', label: 'Image description' }
+          ],
+          empty: () => ({ src: '', caption: '', alt: '' })
+        },
+        sitePhotos: {
+          label: 'Site photos',
+          help: 'The main photos built into the site. Upload a new image to replace one.',
+          type: 'slots',
+          slots: [
+            { key: 'heroPoster', label: 'Home page hero photo (big banner at the top)' },
+            { key: 'contactImage', label: 'Contact page photo' },
+            { key: 'storyBeer', label: 'Home page beer card photo' },
+            { key: 'storyWine', label: 'Home page wine card photo' },
+            { key: 'storySpirits', label: 'Home page spirits card photo' }
+          ]
+        },
+        tastingCalendar: {
+          label: 'Tasting calendar',
+          help: 'Private scheduling calendar. Click a day and write a note to book a vendor tasting slot. Only you can see this.',
+          type: 'calendar'
         }
       };
 
@@ -307,6 +456,8 @@
       let content = {};
       let activeSection = 'featuredUpdates';
       let pendingImages = [];
+      let calCursor = new Date();
+      let selectedDate = '';
 
       const loginPanel = document.getElementById('loginPanel');
       const editor = document.getElementById('editor');
@@ -317,6 +468,10 @@
       const sectionHelp = document.getElementById('sectionHelp');
       const tabs = document.getElementById('tabs');
       const saveTop = document.getElementById('saveTop');
+      const addItemButton = document.getElementById('addItem');
+
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
       const sanitizeFileName = (name) => {
         const parts = name.toLowerCase().split('.');
@@ -360,6 +515,47 @@
         content[activeSection][index][field] = value;
       }
 
+      function buildImageControl(currentValue, onValue) {
+        const row = document.createElement('div');
+        row.className = 'image-row';
+
+        const preview = document.createElement('img');
+        preview.className = 'preview';
+        preview.alt = '';
+        preview.src = currentValue || '/favicon.svg';
+
+        const controls = document.createElement('div');
+        const pathInput = document.createElement('input');
+        pathInput.value = currentValue || '';
+        pathInput.placeholder = '/uploads/image.jpg';
+        pathInput.addEventListener('input', (event) => {
+          onValue(event.target.value);
+          preview.src = event.target.value || '/favicon.svg';
+        });
+
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*';
+        fileInput.addEventListener('change', async (event) => {
+          const file = event.target.files[0];
+          if (!file) return;
+
+          const filename = sanitizeFileName(file.name);
+          const publicPath = `/uploads/${filename}`;
+          const repoPath = `public/uploads/${filename}`;
+          const dataUrl = await readFileAsDataUrl(file);
+          pendingImages.push({ path: repoPath, dataUrl });
+          onValue(publicPath);
+          pathInput.value = publicPath;
+          preview.src = dataUrl;
+          saveStatus.textContent = 'Image ready. Click Save changes to publish it.';
+        });
+
+        controls.append(pathInput, fileInput);
+        row.append(preview, controls);
+        return row;
+      }
+
       function renderTabs() {
         tabs.innerHTML = '';
         Object.entries(sections).forEach(([key, section]) => {
@@ -375,14 +571,241 @@
         });
       }
 
+      function renderSlots(section) {
+        content.sitePhotos = content.sitePhotos || {};
+
+        section.slots.forEach((slot) => {
+          const card = document.createElement('article');
+          card.className = 'item';
+
+          const label = document.createElement('label');
+          label.className = 'full';
+          label.textContent = slot.label;
+          label.appendChild(
+            buildImageControl(content.sitePhotos[slot.key] || '', (value) => {
+              content.sitePhotos[slot.key] = value;
+            })
+          );
+
+          card.appendChild(label);
+          contentList.appendChild(card);
+        });
+      }
+
+      function toDateKey(year, month, day) {
+        return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+      }
+
+      function formatDateKey(dateKey) {
+        const [year, month, day] = dateKey.split('-').map(Number);
+        return `${monthNames[month - 1]} ${day}, ${year}`;
+      }
+
+      function getNote(dateKey) {
+        return (content.tastingCalendar || []).find((entry) => entry.date === dateKey);
+      }
+
+      function renderCalendar() {
+        content.tastingCalendar = content.tastingCalendar || [];
+
+        const wrap = document.createElement('article');
+        wrap.className = 'item';
+
+        const toolbar = document.createElement('div');
+        toolbar.className = 'cal-toolbar';
+
+        const title = document.createElement('span');
+        title.className = 'cal-title';
+        title.textContent = `${monthNames[calCursor.getMonth()]} ${calCursor.getFullYear()}`;
+
+        const nav = document.createElement('div');
+        nav.className = 'cal-nav';
+
+        const prev = document.createElement('button');
+        prev.className = 'button secondary';
+        prev.type = 'button';
+        prev.textContent = '< Prev';
+        prev.addEventListener('click', () => {
+          calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth() - 1, 1);
+          render();
+        });
+
+        const next = document.createElement('button');
+        next.className = 'button secondary';
+        next.type = 'button';
+        next.textContent = 'Next >';
+        next.addEventListener('click', () => {
+          calCursor = new Date(calCursor.getFullYear(), calCursor.getMonth() + 1, 1);
+          render();
+        });
+
+        nav.append(prev, next);
+        toolbar.append(title, nav);
+
+        const grid = document.createElement('div');
+        grid.className = 'cal-grid';
+
+        weekdays.forEach((day) => {
+          const cell = document.createElement('span');
+          cell.className = 'cal-weekday';
+          cell.textContent = day;
+          grid.appendChild(cell);
+        });
+
+        const year = calCursor.getFullYear();
+        const month = calCursor.getMonth();
+        const firstWeekday = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < firstWeekday; i += 1) {
+          const cell = document.createElement('span');
+          cell.className = 'cal-day empty';
+          grid.appendChild(cell);
+        }
+
+        for (let day = 1; day <= daysInMonth; day += 1) {
+          const dateKey = toDateKey(year, month, day);
+          const entry = getNote(dateKey);
+
+          const cell = document.createElement('button');
+          cell.type = 'button';
+          cell.className = `cal-day ${entry ? 'has-note' : ''} ${selectedDate === dateKey ? 'selected' : ''}`;
+
+          const number = document.createElement('span');
+          number.className = 'cal-day-number';
+          number.textContent = day;
+          cell.appendChild(number);
+
+          if (entry) {
+            const note = document.createElement('span');
+            note.className = 'cal-day-note';
+            note.textContent = entry.note;
+            cell.appendChild(note);
+          }
+
+          cell.addEventListener('click', () => {
+            selectedDate = dateKey;
+            render();
+          });
+
+          grid.appendChild(cell);
+        }
+
+        wrap.append(toolbar, grid);
+
+        if (selectedDate) {
+          const entry = getNote(selectedDate);
+          const editorBox = document.createElement('div');
+          editorBox.className = 'cal-editor';
+
+          const label = document.createElement('label');
+          label.textContent = `Tasting note for ${formatDateKey(selectedDate)}`;
+
+          const textarea = document.createElement('textarea');
+          textarea.placeholder = 'e.g. Fortaleza rep in store, tasting table 4-6 PM';
+          textarea.value = entry ? entry.note : '';
+          label.appendChild(textarea);
+
+          const actions = document.createElement('div');
+          actions.className = 'cal-editor-actions';
+
+          const saveNote = document.createElement('button');
+          saveNote.className = 'button';
+          saveNote.type = 'button';
+          saveNote.textContent = entry ? 'Update note' : 'Add note';
+          saveNote.addEventListener('click', () => {
+            const note = textarea.value.trim();
+
+            if (!note) {
+              saveStatus.textContent = 'Write a note first.';
+              return;
+            }
+
+            if (entry) {
+              entry.note = note;
+            } else {
+              content.tastingCalendar.push({ date: selectedDate, note });
+            }
+
+            saveStatus.textContent = 'Note added. Click Save changes to keep it.';
+            render();
+          });
+
+          actions.appendChild(saveNote);
+
+          if (entry) {
+            const removeNote = document.createElement('button');
+            removeNote.className = 'button secondary danger';
+            removeNote.type = 'button';
+            removeNote.textContent = 'Remove note';
+            removeNote.addEventListener('click', () => {
+              content.tastingCalendar = content.tastingCalendar.filter((item) => item.date !== selectedDate);
+              saveStatus.textContent = 'Note removed. Click Save changes to keep it.';
+              render();
+            });
+            actions.appendChild(removeNote);
+          }
+
+          editorBox.append(label, actions);
+          wrap.appendChild(editorBox);
+        } else {
+          const hint = document.createElement('p');
+          hint.className = 'muted';
+          hint.style.marginTop = '12px';
+          hint.textContent = 'Click a day to add or edit a tasting note.';
+          wrap.appendChild(hint);
+        }
+
+        const upcoming = [...content.tastingCalendar].sort((a, b) => a.date.localeCompare(b.date));
+
+        if (upcoming.length > 0) {
+          const listWrap = document.createElement('div');
+          listWrap.className = 'cal-upcoming';
+
+          const heading = document.createElement('h3');
+          heading.textContent = 'All scheduled tastings';
+          listWrap.appendChild(heading);
+
+          upcoming.forEach((item) => {
+            const row = document.createElement('div');
+            row.className = 'cal-upcoming-item';
+
+            const when = document.createElement('strong');
+            when.textContent = formatDateKey(item.date);
+
+            const what = document.createElement('span');
+            what.textContent = item.note;
+
+            row.append(when, what);
+            listWrap.appendChild(row);
+          });
+
+          wrap.appendChild(listWrap);
+        }
+
+        contentList.appendChild(wrap);
+      }
+
       function render() {
         renderTabs();
 
         const section = sections[activeSection];
-        const items = content[activeSection] || [];
         sectionTitle.textContent = section.label;
         sectionHelp.textContent = section.help;
         contentList.innerHTML = '';
+        addItemButton.classList.toggle('hide', Boolean(section.type));
+
+        if (section.type === 'slots') {
+          renderSlots(section);
+          return;
+        }
+
+        if (section.type === 'calendar') {
+          renderCalendar();
+          return;
+        }
+
+        const items = content[activeSection] || [];
 
         items.forEach((item, index) => {
           const card = document.createElement('article');
@@ -403,44 +826,9 @@
               textarea.addEventListener('input', (event) => setItemValue(index, field.name, event.target.value));
               label.appendChild(textarea);
             } else if (field.type === 'image') {
-              const row = document.createElement('div');
-              row.className = 'image-row';
-
-              const preview = document.createElement('img');
-              preview.className = 'preview';
-              preview.alt = '';
-              preview.src = value || '/favicon.svg';
-
-              const controls = document.createElement('div');
-              const pathInput = document.createElement('input');
-              pathInput.value = value;
-              pathInput.placeholder = '/uploads/image.jpg';
-              pathInput.addEventListener('input', (event) => {
-                setItemValue(index, field.name, event.target.value);
-                preview.src = event.target.value || '/favicon.svg';
-              });
-
-              const fileInput = document.createElement('input');
-              fileInput.type = 'file';
-              fileInput.accept = 'image/*';
-              fileInput.addEventListener('change', async (event) => {
-                const file = event.target.files[0];
-                if (!file) return;
-
-                const filename = sanitizeFileName(file.name);
-                const publicPath = `/uploads/${filename}`;
-                const repoPath = `public/uploads/${filename}`;
-                const dataUrl = await readFileAsDataUrl(file);
-                pendingImages.push({ path: repoPath, dataUrl });
-                setItemValue(index, field.name, publicPath);
-                pathInput.value = publicPath;
-                preview.src = dataUrl;
-                saveStatus.textContent = 'Image ready. Click Save changes to publish it.';
-              });
-
-              controls.append(pathInput, fileInput);
-              row.append(preview, controls);
-              label.appendChild(row);
+              label.appendChild(
+                buildImageControl(value, (nextValue) => setItemValue(index, field.name, nextValue))
+              );
             } else {
               const input = document.createElement('input');
               input.value = value;
@@ -475,6 +863,9 @@
             body: JSON.stringify({ password, action: 'load' })
           });
           content = payload.content;
+          content.siteGallery = content.siteGallery || [];
+          content.sitePhotos = content.sitePhotos || {};
+          content.tastingCalendar = content.tastingCalendar || [];
           loginPanel.classList.add('hide');
           editor.classList.remove('hide');
           saveTop.classList.remove('hide');
@@ -512,7 +903,7 @@
       document.getElementById('passwordInput').addEventListener('keydown', (event) => {
         if (event.key === 'Enter') loadEditor();
       });
-      document.getElementById('addItem').addEventListener('click', () => {
+      addItemButton.addEventListener('click', () => {
         content[activeSection] = content[activeSection] || [];
         content[activeSection].push(sections[activeSection].empty());
         render();

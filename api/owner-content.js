@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const repoOwner = 'vvramana007';
-const repoName = 'Bullfrog_Wine_Spirits';
+const repoName = 'Bullfrog_Webpage';
 const branch = 'main';
 const contentPath = 'src/data/owner-content.json';
 const githubApiBase = `https://api.github.com/repos/${repoOwner}/${repoName}/contents`;
@@ -42,6 +42,19 @@ function isValidContent(content) {
     && Array.isArray(content.updateMoments)
     && Array.isArray(content.featuredUpdates)
     && Array.isArray(content.tastingUpdates);
+}
+
+function normalizeContent(content) {
+  return {
+    ...content,
+    siteGallery: Array.isArray(content.siteGallery) ? content.siteGallery : [],
+    sitePhotos: content.sitePhotos && typeof content.sitePhotos === 'object' ? content.sitePhotos : {},
+    tastingCalendar: Array.isArray(content.tastingCalendar)
+      ? content.tastingCalendar.filter(
+          (entry) => entry && /^\d{4}-\d{2}-\d{2}$/.test(entry.date || '') && typeof entry.note === 'string',
+        )
+      : [],
+  };
 }
 
 function assertUploadPath(uploadPath) {
@@ -195,7 +208,7 @@ export default async function handler(request, response) {
       }
 
       await saveImages(githubToken, body.images || []);
-      await saveContent(githubToken, body.content);
+      await saveContent(githubToken, normalizeContent(body.content));
       sendJson(response, 200, { ok: true });
       return;
     }

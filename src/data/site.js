@@ -1,5 +1,8 @@
 import ownerContent from './owner-content.json';
 
+const sitePhotos = ownerContent.sitePhotos || {};
+const sitePhoto = (key, fallback) => sitePhotos[key] || fallback;
+
 export const businessInfo = {
   name: 'Bullfrog Wine & Spirits',
   tagline: 'The no-nonsense bottle shop on North College — cold beer, deep spirits, quick stops.',
@@ -299,7 +302,7 @@ export const categoryStories = [
       { label: 'Best for', value: 'Game day, house parties, quick cold runs' },
       { label: 'Look for', value: 'Local craft, easy packs, fast grab-and-go picks' },
     ],
-    image: promoImage('busch-light-lime.jpeg'),
+    image: sitePhoto('storyBeer', promoImage('busch-light-lime.jpeg')),
     alt: 'Busch Light Lime promotional graphic for Bullfrog Wine & Spirits',
   },
   {
@@ -312,7 +315,7 @@ export const categoryStories = [
       { label: 'Best for', value: 'Dinner bottles, gifts, date night, host stops' },
       { label: 'Look for', value: 'Easy reds, crisp whites, bottles that feel elevated' },
     ],
-    image: '/store-media/aisle-wine.jpeg',
+    image: sitePhoto('storyWine', '/store-media/aisle-wine.jpeg'),
     alt: 'Wine and spirits aisles inside Bullfrog Wine & Spirits',
   },
   {
@@ -325,7 +328,7 @@ export const categoryStories = [
       { label: 'Best for', value: 'Top-shelf browsing, cocktails, gifting, collector stops' },
       { label: 'Look for', value: 'Premium tequila, whiskey, vodka, and featured bottle displays' },
     ],
-    image: '/store-media/aisle-spirits.jpeg',
+    image: sitePhoto('storySpirits', '/store-media/aisle-spirits.jpeg'),
     alt: 'Spirits aisle inside Bullfrog Wine & Spirits',
   },
 ];
@@ -512,7 +515,7 @@ export const cocktailCentral = {
   ],
 };
 
-export const sliderPhotos = [
+const defaultSliderPhotos = [
   {
     src: '/store-media/storefront.jpeg',
     alt: 'Bullfrog Wine & Spirits storefront on North College Ave',
@@ -570,10 +573,14 @@ export const sliderPhotos = [
   },
 ];
 
+export const sliderPhotos = Array.isArray(ownerContent.siteGallery) && ownerContent.siteGallery.length > 0
+  ? ownerContent.siteGallery
+  : defaultSliderPhotos;
+
 export const pages = {
   home: {
     heroVideo: '',
-    heroPoster: '/store-media/storefront.jpeg',
+    heroPoster: sitePhoto('heroPoster', '/store-media/storefront.jpeg'),
     quotes: [
       'Cold beer for game day, pregame plans, and last-minute runs',
       'Whether it is a quick beer run, a weekend party pack, or the bottle that makes the night feel planned, Bullfrog keeps it easy.',
@@ -584,6 +591,6 @@ export const pages = {
     ],
   },
   contact: {
-    image: '/store-media/interior-front.jpeg',
+    image: sitePhoto('contactImage', '/store-media/interior-front.jpeg'),
   },
 };

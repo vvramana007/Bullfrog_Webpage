@@ -127,5 +127,70 @@
       "image": "/promo-media/storefront-summer.jpeg",
       "alt": "Bullfrog Wine & Spirits summer storefront display"
     }
-  ]
+  ],
+  "siteGallery": [
+    {
+      "src": "/store-media/storefront.jpeg",
+      "alt": "Bullfrog Wine & Spirits storefront on North College Ave",
+      "caption": "The Bullfrog storefront is easy to spot right on North College Ave."
+    },
+    {
+      "src": "/store-media/interior-front.jpeg",
+      "alt": "Front sales floor inside Bullfrog Wine & Spirits",
+      "caption": "A bright, open sales floor makes browsing feel fast and easy."
+    },
+    {
+      "src": "/store-media/aisle-spirits.jpeg",
+      "alt": "Spirits aisle inside Bullfrog Wine & Spirits",
+      "caption": "The spirits aisles are stocked deep with staples and standouts."
+    },
+    {
+      "src": "/store-media/aisle-wine.jpeg",
+      "alt": "Wine aisle inside Bullfrog Wine & Spirits",
+      "caption": "Wine picks stay easy to compare with wide, clear aisles."
+    },
+    {
+      "src": "/store-media/svedka-display.jpeg",
+      "alt": "Featured display inside Bullfrog Wine & Spirits",
+      "caption": "Featured displays add color and energy in the middle of the store."
+    },
+    {
+      "src": "/store-media/aisle-displays.jpeg",
+      "alt": "Featured stacks and displays inside Bullfrog Wine & Spirits",
+      "caption": "Featured stacks keep the store feeling open and easy to shop."
+    },
+    {
+      "src": "/store-media/cooler-aisle.jpeg",
+      "alt": "Cooler aisle inside Bullfrog Wine & Spirits",
+      "caption": "Cold walls keep beer, seltzers, and RTDs ready for quick pickups."
+    },
+    {
+      "src": "/store-media/cooler-vodka.jpeg",
+      "alt": "Coolers and vodka section inside Bullfrog Wine & Spirits",
+      "caption": "Cold selections sit right beside the spirits for one-stop runs."
+    },
+    {
+      "src": "/promo-media/weller-lineup.jpeg",
+      "alt": "Weller bourbon lineup promotional graphic for Bullfrog Wine & Spirits",
+      "caption": "Allocated bourbon lineups bring collector appeal to the shelf."
+    },
+    {
+      "src": "/promo-media/michters-10-year.jpeg",
+      "alt": "Michter's 10 Year bourbon promotional graphic for Bullfrog Wine & Spirits",
+      "caption": "Legendary bourbon features make the premium section feel curated."
+    },
+    {
+      "src": "/promo-media/casamigos-world-cup.jpeg",
+      "alt": "Casamigos tequila lineup promotional graphic for Bullfrog Wine & Spirits",
+      "caption": "Premium tequila features make agave shopping easier to browse."
+    }
+  ],
+  "sitePhotos": {
+    "heroPoster": "/store-media/storefront.jpeg",
+    "contactImage": "/store-media/interior-front.jpeg",
+    "storyBeer": "/promo-media/busch-light-lime.jpeg",
+    "storyWine": "/store-media/aisle-wine.jpeg",
+    "storySpirits": "/store-media/aisle-spirits.jpeg"
+  },
+  "tastingCalendar": []
 }
